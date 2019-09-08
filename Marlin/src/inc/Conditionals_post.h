@@ -1823,12 +1823,6 @@
       #define LCD_HEIGHT 2
     #endif
   #endif
-  #ifndef STRING_SPLASH_LINE1
-    #define STRING_SPLASH_LINE1 SHORT_BUILD_VERSION // Shown during bootup in line 1
-  #endif
-  #ifndef STRING_SPLASH_LINE2
-    #define STRING_SPLASH_LINE2 WEBSITE_URL         // Shown during bootup in line 2
-  #endif
 #endif
 
 //
