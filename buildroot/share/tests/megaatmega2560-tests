@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Build tests for AVR
+# Build tests for AVR ATmega2560
 #
 
 # exit on first failure
@@ -9,14 +9,15 @@ set -e
 #
 # Build with the default configurations
 #
-restore_configs
-exec_test $1 $2 "Default Configuration"
+#restore_configs
+#exec_test $1 $2 "Default Configuration"
 
 #
 # Test 2 extruders (one MAX6675) and heated bed on basic RAMPS 1.4
 # Test a "Fix Mounted" Probe with Safe Homing, some arc options,
 # linear bed leveling, M48, leveling debug, and firmware retraction.
 #
+restore_configs
 opt_set MOTHERBOARD BOARD_RAMPS_14_EEB
 opt_set EXTRUDERS 2
 opt_set TEMP_SENSOR_0 -2
@@ -54,7 +55,7 @@ opt_set TEMP_SENSOR_3 20
 opt_set TEMP_SENSOR_4 1000
 opt_set TEMP_SENSOR_BED 1
 opt_enable AUTO_BED_LEVELING_UBL RESTORE_LEVELING_AFTER_G28 DEBUG_LEVELING_FEATURE G26_MESH_EDITING ENABLE_LEVELING_FADE_HEIGHT SKEW_CORRECTION \
-           REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER LIGHTWEIGHT_UI STATUS_MESSAGE_SCROLLING \
+           REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER LIGHTWEIGHT_UI STATUS_MESSAGE_SCROLLING BOOT_MARLIN_LOGO_SMALL BOOT_MARLIN_LOGO_ANIMATED \
            SDSUPPORT SDCARD_SORT_ALPHA USB_FLASH_DRIVE_SUPPORT SCROLL_LONG_FILENAMES \
            EEPROM_SETTINGS EEPROM_CHITCHAT GCODE_MACROS CUSTOM_USER_MENUS \
            MULTI_NOZZLE_DUPLICATION JUNCTION_DEVIATION LIN_ADVANCE QUICK_HOME \
@@ -78,15 +79,8 @@ restore_configs
 opt_enable ZONESTAR_LCD Z_PROBE_SERVO_NR Z_SERVO_ANGLES DEACTIVATE_SERVOS_AFTER_MOVE \
            AUTO_BED_LEVELING_3POINT DEBUG_LEVELING_FEATURE EEPROM_SETTINGS EEPROM_CHITCHAT
 opt_set NUM_SERVOS 1
-opt_enable NO_VOLUMETRICS EXTENDED_CAPABILITIES_REPORT AUTO_REPORT_TEMPERATURES AUTOTEMP G38_PROBE_TARGET
+opt_enable NO_VOLUMETRICS EXTENDED_CAPABILITIES_REPORT AUTO_REPORT_TEMPERATURES AUTOTEMP G38_PROBE_TARGET JOYSTICK
 exec_test $1 $2 "RAMPS with ZONESTAR_LCD, Servo Probe, 3-Point ABL, DEBUG_LEVELING_FEATURE, EEPROM, G38, and more"
-
-#
-# Test MESH_BED_LEVELING feature, with LCD
-#
-restore_configs
-opt_enable SPINDLE_FEATURE MESH_BED_LEVELING G26_MESH_EDITING MESH_G28_REST_ORIGIN LCD_BED_LEVELING MESH_EDIT_MENU ULTIMAKERCONTROLLER
-exec_test $1 $2 "Spindle, MESH_BED_LEVELING, and LCD"
 
 #
 # Test MINIRAMBO with PWM_MOTOR_CURRENT and many features
@@ -249,11 +243,11 @@ exec_test $1 $2 "Many less common options"
 #
 #restore_configs
 #opt_enable REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER SDSUPPORT
-#for lang in an bg ca zh_CN zh_TW cz da de el el-gr en es eu fi fr gl hr it jp-kana nl pl pt pt-br ru sk tr uk test; do opt_set LCD_LANGUAGE $lang; echo "compile with language $lang ..."; exec_test $1 $2 "Stuff"; done
+#for lang in an bg ca cz da de el el-gr en es eu fi fr gl hr it jp-kana nl pl pt pt-br ru sk tr uk vi zh_CN zh_TW test; do opt_set LCD_LANGUAGE $lang; echo "compile with language $lang ..."; exec_test $1 $2 "Stuff"; done
 #
 #restore_configs
 #opt_enable REPRAP_DISCOUNT_SMART_CONTROLLER SDSUPPORT
-#for lang in an bg ca zh_CN zh_TW cz da de el el-gr en es eu fi fr gl hr it jp-kana nl pl pt pt-br ru sk tr uk test; do opt_set LCD_LANGUAGE $lang; echo "compile with language $lang ..."; exec_test $1 $2 "Stuff"; done
+#for lang in an bg ca cz da de el el-gr en es eu fi fr gl hr it jp-kana nl pl pt pt-br ru sk tr uk vi zh_CN zh_TW test; do opt_set LCD_LANGUAGE $lang; echo "compile with language $lang ..."; exec_test $1 $2 "Stuff"; done
 
 ######## Example Configurations ##############
 #

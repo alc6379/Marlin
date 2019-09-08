@@ -42,7 +42,7 @@
    * version was tagged.
    */
 #ifndef STRING_DISTRIBUTION_DATE
-  #define STRING_DISTRIBUTION_DATE "2019-08-14"
+  #define STRING_DISTRIBUTION_DATE "2019-09-06"
 #endif
 
 /**
@@ -92,10 +92,10 @@
   #define DEFAULT_MACHINE_UUID "cede2a2f-41a2-4748-9b12-c55c62f367ff"
 #endif
 
-/**
- * Website where users can find information about the 3D Printer.
- * A permanent link to a vendor website is recommended.
- */
+  /**
+   * The WEBSITE_URL is the location where users can get more information such as
+   * documentation about a specific Marlin release. Displayed in the Info Menu.
+   */
 #ifndef WEBSITE_URL
   #define WEBSITE_URL "http://marlinfw.org"
 #endif
