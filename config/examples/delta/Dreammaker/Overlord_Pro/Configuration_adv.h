@@ -1164,7 +1164,6 @@
   //#define GAMES_EASTER_EGG          // Add extra blank lines above the "Games" sub-menu
 
 #endif // HAS_GRAPHICAL_LCD
-
 //
 // Lulzbot Touch UI
 //
