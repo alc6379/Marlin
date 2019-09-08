@@ -37,7 +37,7 @@
  */
 
 // Change EEPROM version if the structure changes
-#define EEPROM_VERSION "V69"
+#define EEPROM_VERSION "V70"
 #define EEPROM_OFFSET 100
 
 // Check the integrity of data offsets.
@@ -178,7 +178,7 @@ typedef struct SettingsDataStruct {
   // HAS_BED_PROBE
   //
 
-  float zprobe_zoffset;
+  float zprobe_offset[XYZ];
 
   //
   // ABL_PLANAR
@@ -615,12 +615,14 @@ void MarlinSettings::postprocess() {
     // Probe Z Offset
     //
     {
-      _FIELD_TEST(zprobe_zoffset);
+      _FIELD_TEST(zprobe_offset[Z_AXIS]);
 
       #if !HAS_BED_PROBE
-        const float zprobe_zoffset = 0;
+        const float zprobe_offset[XYZ] = {0};
       #endif
-      EEPROM_WRITE(zprobe_zoffset);
+      EEPROM_WRITE(zprobe_offset[X_AXIS]);
+      EEPROM_WRITE(zprobe_offset[Y_AXIS]);
+      EEPROM_WRITE(zprobe_offset[Z_AXIS]);
     }
 
     //
@@ -1426,12 +1428,14 @@ void MarlinSettings::postprocess() {
       // Probe Z Offset
       //
       {
-        _FIELD_TEST(zprobe_zoffset);
+        _FIELD_TEST(zprobe_offset[Z_AXIS]);
 
         #if !HAS_BED_PROBE
-          float zprobe_zoffset;
+          float zprobe_offset[XYZ];
         #endif
-        EEPROM_READ(zprobe_zoffset);
+        EEPROM_READ(zprobe_offset[X_AXIS]);
+        EEPROM_READ(zprobe_offset[Y_AXIS]);
+        EEPROM_READ(zprobe_offset[Z_AXIS]);
       }
 
       //
@@ -2333,7 +2337,9 @@ void MarlinSettings::reset() {
   #endif
 
   #if HAS_BED_PROBE
-    zprobe_zoffset = Z_PROBE_OFFSET_FROM_EXTRUDER;
+    zprobe_offset[X_AXIS] = X_PROBE_OFFSET_FROM_EXTRUDER;
+    zprobe_offset[Y_AXIS] = Y_PROBE_OFFSET_FROM_EXTRUDER;
+    zprobe_offset[Z_AXIS] = Z_PROBE_OFFSET_FROM_EXTRUDER;
   #endif
 
   //
@@ -3083,7 +3089,9 @@ void MarlinSettings::reset() {
         say_units(true);
       }
       CONFIG_ECHO_START();
-      SERIAL_ECHOLNPAIR("  M851 Z", LINEAR_UNIT(zprobe_zoffset));
+      SERIAL_ECHOLNPAIR("  M851 X", LINEAR_UNIT(zprobe_offset[X_AXIS]));
+      SERIAL_ECHOLNPAIR("  M851 Y", LINEAR_UNIT(zprobe_offset[Y_AXIS]));
+      SERIAL_ECHOLNPAIR("  M851 Z", LINEAR_UNIT(zprobe_offset[Z_AXIS]));
     #endif
 
     /**

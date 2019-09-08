@@ -309,7 +309,7 @@
 #define MSG_MANUAL_STOW                     _UxGT("Cất Đầu Dò-Z")                         // Stow Z-Probe
 #define MSG_HOME                            _UxGT("Về nhà") // Used as MSG_HOME " " MSG_X MSG_Y MSG_Z " " MSG_FIRST
 #define MSG_FIRST                           _UxGT("Trước")
-#define MSG_ZPROBE_ZOFFSET                  _UxGT("Đầu Dò Bù Đắp Z")                      // Probe Z Offset
+#define MSG_zprobe_zoffset                  _UxGT("Đầu Dò Bù Đắp Z")                      // Probe Z Offset
 #define MSG_BABYSTEP_X                      _UxGT("Nhít X")                               // Babystep X
 #define MSG_BABYSTEP_Y                      _UxGT("Nhít Y")
 #define MSG_BABYSTEP_Z                      _UxGT("Nhít Z")

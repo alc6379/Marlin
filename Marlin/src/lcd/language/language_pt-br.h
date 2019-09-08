@@ -313,7 +313,7 @@
 
 #define MSG_HOME                            _UxGT("Home")
 #define MSG_FIRST                           _UxGT("Primeiro")
-#define MSG_ZPROBE_ZOFFSET                  _UxGT("Compensar Sonda em Z")
+#define MSG_zprobe_zoffset                  _UxGT("Compensar Sonda em Z")
 #define MSG_BABYSTEP_X                      _UxGT("Passinho X")
 #define MSG_BABYSTEP_Y                      _UxGT("Passinho Y")
 #define MSG_BABYSTEP_Z                      _UxGT("Passinho Z")

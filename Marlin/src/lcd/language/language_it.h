@@ -350,7 +350,7 @@
 #define MSG_MANUAL_STOW                     _UxGT("Ritrai Sonda-Z")
 #define MSG_HOME                            _UxGT("Home")  // Usato come MSG_HOME " " MSG_X MSG_Y MSG_Z " " MSG_FIRST
 #define MSG_FIRST                           _UxGT("prima")
-#define MSG_ZPROBE_ZOFFSET                  _UxGT("Offset sonda Z")
+#define MSG_zprobe_zoffset                  _UxGT("Offset sonda Z")
 #define MSG_BABYSTEP_X                      _UxGT("Babystep X")
 #define MSG_BABYSTEP_Y                      _UxGT("Babystep Y")
 #define MSG_BABYSTEP_Z                      _UxGT("Babystep Z")
