@@ -46,6 +46,7 @@
     extern const char msg_wait_for_bed_heating[25];
   #endif
 #else
+  constexpr float zprobe_offset[XYZ] = { 0 };
   #define DEPLOY_PROBE()
   #define STOW_PROBE()
 #endif

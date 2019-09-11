@@ -60,6 +60,8 @@
   #include "../HAL/shared/persistent_store_api.h"
 #endif
 
+#include "probe.h"
+
 #if HAS_LEVELING
   #include "../feature/bedlevel/bedlevel.h"
 #endif
@@ -76,10 +78,6 @@
   #define EEPROM_NUM_SERVOS NUM_SERVOS
 #else
   #define EEPROM_NUM_SERVOS NUM_SERVO_PLUGS
-#endif
-
-#if HAS_BED_PROBE
-  #include "probe.h"
 #endif
 
 #include "../feature/fwretract.h"
@@ -616,13 +614,7 @@ void MarlinSettings::postprocess() {
     //
     {
       _FIELD_TEST(zprobe_offset[Z_AXIS]);
-
-      #if !HAS_BED_PROBE
-        const float zprobe_offset[XYZ] = { 0 };
-      #endif
-      EEPROM_WRITE(zprobe_offset[X_AXIS]);
-      EEPROM_WRITE(zprobe_offset[Y_AXIS]);
-      EEPROM_WRITE(zprobe_offset[Z_AXIS]);
+      EEPROM_WRITE(zprobe_offset);
     }
 
     //
@@ -1430,12 +1422,12 @@ void MarlinSettings::postprocess() {
       {
         _FIELD_TEST(zprobe_offset[Z_AXIS]);
 
-        #if !HAS_BED_PROBE
-          float zprobe_offset[XYZ];
+        #if HAS_BED_PROBE
+          float (&zpo)[XYZ] = zprobe_offset;
+        #else
+          float zpo[XYZ];
         #endif
-        EEPROM_READ(zprobe_offset[X_AXIS]);
-        EEPROM_READ(zprobe_offset[Y_AXIS]);
-        EEPROM_READ(zprobe_offset[Z_AXIS]);
+        EEPROM_READ(zpo);
       }
 
       //
@@ -2337,9 +2329,12 @@ void MarlinSettings::reset() {
   #endif
 
   #if HAS_BED_PROBE
-    zprobe_offset[X_AXIS] = X_PROBE_OFFSET_FROM_EXTRUDER;
-    zprobe_offset[Y_AXIS] = Y_PROBE_OFFSET_FROM_EXTRUDER;
-    zprobe_offset[Z_AXIS] = Z_PROBE_OFFSET_FROM_EXTRUDER;
+    #ifndef NOZZLE_TO_PROBE_OFFSET
+      #define NOZZLE_TO_PROBE_OFFSET { 0, 0, 0 }
+    #endif
+    constexpr float dpo[XYZ] = NOZZLE_TO_PROBE_OFFSET;
+    static_assert(COUNT(dpo) == 3, "NOZZLE_TO_PROBE_OFFSET must contain offsets for X, Y, and Z.");
+    LOOP_XYZ(a) zprobe_offset[a] = default_probe_offset[a];
   #endif
 
   //
@@ -3089,9 +3084,9 @@ void MarlinSettings::reset() {
         say_units(true);
       }
       CONFIG_ECHO_START();
-      SERIAL_ECHOLNPAIR("  M851 X", LINEAR_UNIT(zprobe_offset[X_AXIS]));
-      SERIAL_ECHOLNPAIR("  M851 Y", LINEAR_UNIT(zprobe_offset[Y_AXIS]));
-      SERIAL_ECHOLNPAIR("  M851 Z", LINEAR_UNIT(zprobe_offset[Z_AXIS]));
+      SERIAL_ECHOLNPAIR("  M851 X", LINEAR_UNIT(zprobe_offset[X_AXIS]),
+                              " Y", LINEAR_UNIT(zprobe_offset[Y_AXIS]),
+                              " Z", LINEAR_UNIT(zprobe_offset[Z_AXIS]));
     #endif
 
     /**

@@ -79,10 +79,6 @@
   #define G29_RETURN(b) return;
 #endif
 
-#if !HAS_BED_PROBE
-  const float zprobe_offset[XYZ] = { 0 };
-#endif
-
 /**
  * G29: Detailed Z probe, probes the bed at 3 or more points.
  *      Will fail if the printer has not been homed with G28.

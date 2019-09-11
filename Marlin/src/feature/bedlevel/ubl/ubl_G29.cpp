@@ -51,10 +51,6 @@
     #include "../../../lcd/extensible_ui/ui_api.h"
   #endif
 
-  #if !HAS_BED_PROBE
-    const float zprobe_offset[XYZ] = {0};
-  #endif
-
   #include <math.h>
 
   #define UBL_G29_P31
@@ -296,7 +292,7 @@
    *   especially better for Delta printers, since it populates the center of the mesh first, allowing for
    *   a quicker test print to verify settings. You don't need to populate the entire mesh to use it.
    *   After all, you don't want to spend a lot of time generating a mesh only to realize the resolution
-   *   or zprobe_offset[Z_AXIS] are incorrect. Mesh-generation gathers points starting closest to the nozzle unless
+   *   or probe offsets are incorrect. Mesh-generation gathers points starting closest to the nozzle unless
    *   an (X,Y) coordinate pair is given.
    *
    *   Unified Bed Leveling uses a lot of EEPROM storage to hold its data, and it takes some effort to get
