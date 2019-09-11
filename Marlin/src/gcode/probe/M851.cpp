@@ -39,18 +39,18 @@ void GcodeSuite::M851() {
   }
   if (parser.seenval('X')) {
     const float value = parser.value_linear_units();
-    if (WITHIN(value, 0-X_BED_SIZE, X_BED_SIZE))
+    if (WITHIN(value, -(X_BED_SIZE), X_BED_SIZE))
       zprobe_offset[X_AXIS] = value;
     else
-      SERIAL_ERROR_MSG("?X out of range (" STRINGIFY(0-X_BED_SIZE) " to " STRINGIFY(X_BED_SIZE) ")");
+      SERIAL_ERROR_MSG("?X out of range (-" STRINGIFY(X_BED_SIZE) " to " STRINGIFY(X_BED_SIZE) ")");
     return;
   }
   if (parser.seenval('Y')) {
     const float value = parser.value_linear_units();
-    if (WITHIN(value, 0-Y_BED_SIZE, Y_BED_SIZE))
+    if (WITHIN(value, -(Y_BED_SIZE), Y_BED_SIZE))
       zprobe_offset[Y_AXIS] = value;
     else
-      SERIAL_ERROR_MSG("?Y out of range (" STRINGIFY(0-Y_BED_SIZE) " to " STRINGIFY(Y_BED_SIZE) ")");
+      SERIAL_ERROR_MSG("?Y out of range (-" STRINGIFY(Y_BED_SIZE) " to " STRINGIFY(Y_BED_SIZE) ")");
     return;
   }
   SERIAL_ECHO_START();
