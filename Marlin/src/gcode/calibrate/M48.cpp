@@ -165,8 +165,8 @@ void GcodeSuite::M48() {
           while (angle < 0.0) angle += 360.0;   // outside of this range.   It looks like they behave correctly with
                                                 // numbers outside of the range, but just to be safe we clamp them.
 
-          X_current = X_probe_location - (zprobe_offset[X_AXIS]) + cos(RADIANS(angle)) * radius;
-          Y_current = Y_probe_location - (zprobe_offset[Y_AXIS]) + sin(RADIANS(angle)) * radius;
+          X_current = X_probe_location - zprobe_offset[X_AXIS] + cos(RADIANS(angle)) * radius;
+          Y_current = Y_probe_location - zprobe_offset[Y_AXIS] + sin(RADIANS(angle)) * radius;
 
           #if DISABLED(DELTA)
             LIMIT(X_current, X_MIN_POS, X_MAX_POS);

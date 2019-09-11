@@ -39,7 +39,7 @@
   #if HAS_BED_PROBE
     #include "../../../module/probe.h"
   #else
-    const float zprobe_offset[XYZ] = {0};
+    const float zprobe_offset[XYZ] = { 0 };
   #endif
 
   #include "math.h"

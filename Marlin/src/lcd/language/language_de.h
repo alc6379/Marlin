@@ -365,7 +365,7 @@
 #define MSG_MANUAL_STOW                     _UxGT("Z-Sonde einfahren")
 #define MSG_HOME                            _UxGT("Vorher") // Used as MSG_HOME " " MSG_X MSG_Y MSG_Z " " MSG_FIRST
 #define MSG_FIRST                           _UxGT("homen")
-#define MSG_zprobe_zoffset                  _UxGT("Sondenversatz Z")
+#define MSG_ZPROBE_ZOFFSET                  _UxGT("Sondenversatz Z")
 #define MSG_BABYSTEP_X                      _UxGT("Babystep X")
 #define MSG_BABYSTEP_Y                      _UxGT("Babystep Y")
 #define MSG_BABYSTEP_Z                      _UxGT("Babystep Z")

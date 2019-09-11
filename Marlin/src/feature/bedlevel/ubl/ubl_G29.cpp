@@ -806,8 +806,8 @@
       restore_ubl_active_state_and_leave();
 
       do_blocking_move_to_xy(
-        constrain(rx - (zprobe_offset[X_AXIS]), MESH_MIN_X, MESH_MAX_X),
-        constrain(ry - (zprobe_offset[Y_AXIS]), MESH_MIN_Y, MESH_MAX_Y)
+        constrain(rx - zprobe_offset[X_AXIS], MESH_MIN_X, MESH_MAX_X),
+        constrain(ry - zprobe_offset[Y_AXIS], MESH_MIN_Y, MESH_MAX_Y)
       );
     }
 
@@ -1724,13 +1724,13 @@
       serial_delay(50);
 
       #if ENABLED(ENABLE_LEVELING_FADE_HEIGHT)
-        SERIAL_ECHOLNPAIR_F("planner.z_fade_height : ", planner.z_fade_height, 4);
+        SERIAL_ECHOLNPAIR_F("Fade Height M420 Z", planner.z_fade_height, 4);
       #endif
 
       adjust_mesh_to_mean(g29_c_flag, g29_constant);
 
       #if HAS_BED_PROBE
-        SERIAL_ECHOLNPAIR_F("zprobe_offset[Z_AXIS]: ", zprobe_offset[Z_AXIS], 7);
+        SERIAL_ECHOLNPAIR_F("Probe Offset M851 Z", zprobe_offset[Z_AXIS], 7);
       #endif
 
       SERIAL_ECHOLNPAIR("MESH_MIN_X  " STRINGIFY(MESH_MIN_X) "=", MESH_MIN_X); serial_delay(50);

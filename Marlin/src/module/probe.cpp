@@ -788,8 +788,8 @@ float probe_pt(const float &rx, const float &ry, const ProbePtRaise raise_after/
   float nx = rx, ny = ry;
   if (probe_relative) {
     if (!position_is_reachable_by_probe(rx, ry)) return NAN;  // The given position is in terms of the probe
-    nx -= (zprobe_offset[X_AXIS]);                     // Get the nozzle position
-    ny -= (zprobe_offset[Y_AXIS]);
+    nx -= zprobe_offset[X_AXIS];                     // Get the nozzle position
+    ny -= zprobe_offset[Y_AXIS];
   }
   else if (!position_is_reachable(nx, ny)) return NAN;        // The given position is in terms of the nozzle
 

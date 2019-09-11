@@ -618,7 +618,7 @@ void MarlinSettings::postprocess() {
       _FIELD_TEST(zprobe_offset[Z_AXIS]);
 
       #if !HAS_BED_PROBE
-        const float zprobe_offset[XYZ] = {0};
+        const float zprobe_offset[XYZ] = { 0 };
       #endif
       EEPROM_WRITE(zprobe_offset[X_AXIS]);
       EEPROM_WRITE(zprobe_offset[Y_AXIS]);

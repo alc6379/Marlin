@@ -78,8 +78,9 @@
 #else
   #define G29_RETURN(b) return;
 #endif
+
 #if !HAS_BED_PROBE
-  const float zprobe_offset[XYZ] = {0};
+  const float zprobe_offset[XYZ] = { 0 };
 #endif
 
 /**
@@ -954,8 +955,8 @@ G29_TYPE GcodeSuite::G29() {
         planner.leveling_active = false;
 
         // Use the last measured distance to the bed, if possible
-        if ( NEAR(current_position[X_AXIS], xProbe - (zprobe_offset[X_AXIS]))
-          && NEAR(current_position[Y_AXIS], yProbe - (zprobe_offset[Y_AXIS]))
+        if ( NEAR(current_position[X_AXIS], xProbe - zprobe_offset[X_AXIS])
+          && NEAR(current_position[Y_AXIS], yProbe - zprobe_offset[Y_AXIS])
         ) {
           const float simple_z = current_position[Z_AXIS] - measured_z;
           if (DEBUGGING(LEVELING)) DEBUG_ECHOLNPAIR("Probed Z", simple_z, "  Matrix Z", converted[Z_AXIS], "  Discrepancy ", simple_z - converted[Z_AXIS]);

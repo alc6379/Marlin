@@ -421,7 +421,7 @@ void scroll_screen(const uint8_t limit, const bool is_menu) {
           draw_edit_screen(PSTR(MSG_Z_OFFSET), ftostr43sign(hotend_offset[Z_AXIS][active_extruder]));
         else
       #endif
-          draw_edit_screen(PSTR(MSG_zprobe_zoffset), ftostr43sign(zprobe_offset[Z_AXIS]));
+          draw_edit_screen(PSTR(MSG_ZPROBE_ZOFFSET), ftostr43sign(zprobe_offset[Z_AXIS]));
 
       #if ENABLED(BABYSTEP_ZPROBE_GFX_OVERLAY)
         if (do_probe) _lcd_zoffset_overlay_gfx(zprobe_offset[Z_AXIS]);
