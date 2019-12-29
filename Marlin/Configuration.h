@@ -1,8 +1,8 @@
-//#define PetsfangMicroswiss
+#define PetsfangMicroswiss
 #define BondtechBMG
-#define E3DV6
+// #define E3DV6
 //#define FilamentSensorStd
-#define FilamentSensorLerdge
+// #define FilamentSensorLerdge
 
 /**
  * Marlin 3D Printer Firmware
@@ -874,7 +874,7 @@
  *    (0,0)
  */
 #if ENABLED(PetsfangMicroswiss)
-  #define X_PROBE_OFFSET_FROM_EXTRUDER -48  // X offset: -left  +right  [of the nozzle]
+  #define X_PROBE_OFFSET_FROM_EXTRUDER 48  // X offset: -left  +right  [of the nozzle]
   #define Y_PROBE_OFFSET_FROM_EXTRUDER -10  // Y offset: -front +behind [the nozzle]
 #elif ENABLED(E3DV6)
   #define X_PROBE_OFFSET_FROM_EXTRUDER 36  // X offset: -left  +right  [of the nozzle]
@@ -886,7 +886,7 @@
 #define Z_PROBE_OFFSET_FROM_EXTRUDER 0   // Z offset: -below +above  [the nozzle]
 
 // Certain types of probes need to stay away from edges
-#define MIN_PROBE_EDGE 10
+#define MIN_PROBE_EDGE 30
 
 // X and Y axis travel speed (mm/m) between probes
 #define XY_PROBE_SPEED 3000
