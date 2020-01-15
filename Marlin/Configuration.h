@@ -9,6 +9,7 @@
 //#define SKR13_2209
 //#define E_8825
 //#define SKR13_UART // Configure SKR board with drivers in UART mode
+//#define SKR13_2130
 
 //#define SX2 // Small formfactor 200mm machine
 
