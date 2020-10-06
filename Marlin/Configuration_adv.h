@@ -591,8 +591,8 @@
 // @section homing
 
 // Homing hits each endstop, retracts by these distances, then does a slower bump.
-#define X_HOME_BUMP_MM 5
-#define Y_HOME_BUMP_MM 5
+#define X_HOME_BUMP_MM 0
+#define Y_HOME_BUMP_MM 0
 #define Z_HOME_BUMP_MM 2
 #define HOMING_BUMP_DIVISOR { 2, 2, 4 }  // Re-Bump Speed Divisor (Divides the Homing Feedrate)
 //#define QUICK_HOME                     // If homing includes X and Y, do a diagonal move initially
@@ -602,7 +602,7 @@
 //#define HOME_Y_BEFORE_X
 
 // Enable this if X or Y can't home without homing the other axis first.
-#define CODEPENDENT_XY_HOMING
+// #define CODEPENDENT_XY_HOMING
 
 #if ENABLED(BLTOUCH)
   /**
