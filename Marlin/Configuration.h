@@ -122,7 +122,7 @@
  *
  * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-#define SERIAL_PORT 0
+#define SERIAL_PORT -1
 
 /**
  * Select a secondary serial port on the board to use for communication with the host.
@@ -517,15 +517,15 @@
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
   // Ultimaker
-  #if ENABLED(PetsfangMicroswiss)
-    #define DEFAULT_Kp 18.74
-    #define DEFAULT_Ki 0.71
-    #define DEFAULT_Kd 123.56
-  #else
-    #define DEFAULT_Kp 10.59
-    #define DEFAULT_Ki 0.37
-    #define DEFAULT_Kd 75.24
-  #endif
+  // #if ENABLED(PetsfangMicroswiss)
+  //   #define DEFAULT_Kp 18.74
+  //   #define DEFAULT_Ki 0.71
+  //   #define DEFAULT_Kd 123.56
+  // #else
+  //   #define DEFAULT_Kp 10.59
+  //   #define DEFAULT_Ki 0.37
+  //   #define DEFAULT_Kd 75.24
+  // #endif
   // MakerGear
   //#define DEFAULT_Kp 7.0
   //#define DEFAULT_Ki 0.1
@@ -543,9 +543,9 @@
     #define DEFAULT_Ki_LIST {   1.08,   1.08 }
     #define DEFAULT_Kd_LIST { 114.00, 114.00 }
   #else
-    #define DEFAULT_Kp  22.20
-    #define DEFAULT_Ki   1.08
-    #define DEFAULT_Kd 114.00
+    #define DEFAULT_Kp 18.74
+    #define DEFAULT_Ki 0.71
+    #define DEFAULT_Kd 123.56
   #endif
 #endif // PIDTEMP
 
