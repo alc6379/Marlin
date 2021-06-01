@@ -1,18 +1,3 @@
-#define PetsfangMicroswiss
-#define BondtechBMG
-// #define E3DV6
-//#define FilamentSensorStd
-//#define FilamentSensorLerdge
-
-//#define STOCK_2208 // V2 Stock Board with TMC2208 Drivers
-//#define SKR13 // 32 bit board - assumes 2208 drivers
-//#define SKR13_2209
-//#define E_8825
-//#define SKR13_UART // Configure SKR board with drivers in UART mode
-//#define SKR13_2130
-
-//#define SX2 // Small formfactor 200mm machine
-
 #define DUAL_Z
 //#define GRAPHICSLCD
 #define UBL
