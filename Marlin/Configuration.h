@@ -438,7 +438,7 @@
  *   998 : Dummy Table that ALWAYS reads 25°C or the temperature defined below.
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  */
-#define TEMP_SENSOR_0 1
+#define TEMP_SENSOR_0 5
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
@@ -566,7 +566,7 @@
  * heater. If your configuration is significantly different than this and you don't understand
  * the issues involved, don't use bed PID until someone else verifies that your hardware works.
  */
-//#define PIDTEMPBED
+#define PIDTEMPBED
 
 //#define BED_LIMIT_SWITCHING
 
@@ -584,9 +584,12 @@
 
   // 120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   // from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-  #define DEFAULT_bedKp 10.00
-  #define DEFAULT_bedKi .023
-  #define DEFAULT_bedKd 305.4
+  // #define DEFAULT_bedKp 10.00
+  // #define DEFAULT_bedKi .023
+  // #define DEFAULT_bedKd 305.4
+    #define DEFAULT_bedKp 69.85
+    #define DEFAULT_bedKi 13.29
+    #define DEFAULT_bedKd 244.72
 
   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #endif // PIDTEMPBED
@@ -1038,14 +1041,9 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#if ENABLED(PetsfangMicroswiss)
-  #define NOZZLE_TO_PROBE_OFFSET { 48, -2, 0 }
-#elif ENABLED(E3DV6)
-  #define NOZZLE_TO_PROBE_OFFSET { 36, 15, 0 }
-#else
-  #define NOZZLE_TO_PROBE_OFFSET { 37, -10, 0 }
-#endif
 
+
+#define NOZZLE_TO_PROBE_OFFSET { -40, 0, 0 }
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
 #define PROBING_MARGIN 10
@@ -1181,7 +1179,7 @@
 
 // The size of the print bed
 #define X_BED_SIZE 370
-#define Y_BED_SIZE 370
+#define Y_BED_SIZE 350
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
